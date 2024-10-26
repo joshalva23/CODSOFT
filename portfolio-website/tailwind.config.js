@@ -14,6 +14,7 @@ export default {
         lexend: ['"Lexend Exa"', 'sans-serif'],
         robotoMono: ['"Roboto Mono"', 'monospace'],
         dotGothic16 : ['"DotGothic16"', 'sans-serif'],
+        dmsans : ['"DM Sans"', 'sans-serif'],
         
       },
     },
