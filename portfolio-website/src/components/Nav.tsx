@@ -11,14 +11,14 @@ function Nav() {
 
     return (
         <>
-            <div className="flex flex-col w-screen">
+            <div className="flex flex-col w-screen" id="nav">
 
                 <button
                     id="openSidebar"
                     className="fixed top-2 right-4 z-40 text-gray-900 p-3 hover:shadow-xl transition duration-300 md:hidden"
                     onClick={OpenNav}
                 >
-                    <FontAwesomeIcon icon={faBars} size="lg" className="text-white" />
+                    <FontAwesomeIcon icon={faBars} size="lg" className="text-black" />
                 </button>
 
                 <nav

@@ -3,12 +3,8 @@ import polygon2 from '../assets/polygon-2-1.svg';
 import polygon3 from '../assets/polygon-3-1.svg';
 import sample from '../assets/sample-img.png';
 
-import { useEffect } from 'react';
-
 function Octagon({ size }: { size: string }) {
-    useEffect(()=>
-    console.log(`${size}`), []
-    );
+
     return (
         <div className="flex flex-row">
             <div className="w-full overflow-hidden">
@@ -16,7 +12,7 @@ function Octagon({ size }: { size: string }) {
                     src={sample} 
                     alt="Foreground" 
                     style={{ height: `${size}rem`, width: 'auto' }} 
-                    className={`absolute top-10 left-[63.5vw] z-40 `} 
+                    className={`absolute top-10 left-[63.25vw] z-40 `} 
                 />
             </div>
             <img 
