@@ -3,10 +3,11 @@ import polygon2 from '../assets/polygon-2-1.svg';
 import polygon3 from '../assets/polygon-3-1.svg';
 import sample from '../assets/sample-img.png';
 
+
 function Octagon({ size }: { size: string }) {
 
     return (
-        <div className="flex flex-row">
+        <div className="flex flex-row hidden md:block">
             <div className="w-full overflow-hidden">
                 <img 
                     src={sample} 
