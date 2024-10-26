@@ -1,12 +1,12 @@
 import React from 'react';
 
-interface BlogPartProps {
+interface BlogCardProps {
     title:string;
     description:string;
     date: string; 
 }
 
-const BlogPart: React.FC<BlogPartProps> = ({ title, description, date }) =>
+const BlogCard: React.FC<BlogCardProps> = ({ title, description, date }) =>
 {
     return (
         <>
@@ -36,4 +36,4 @@ const BlogPart: React.FC<BlogPartProps> = ({ title, description, date }) =>
     );
 }
 
-export default BlogPart;
+export default BlogCard;
