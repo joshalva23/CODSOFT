@@ -11,8 +11,8 @@ const BlogCard: React.FC<BlogCardProps> = ({ title, description, date }) =>
     return (
         <>
             <div className="w-[70vw] min-h-56 bg-[#2D2D2D] flex flex-row px-9 py-5 rounded-xl blog-card">
-                <div className="pr-[5%] space-y-4">
-                    <div className="text-white font-dmsans text-left text-5xl font-light ">
+                <div className="pr-[5%] space-y-4 overflow-hidden">
+                    <div className="text-white font-dmsans text-left text-3xl md:text-5xl font-light ">
                         <p>
                             {title}
                         </p>

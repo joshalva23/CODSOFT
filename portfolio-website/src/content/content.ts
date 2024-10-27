@@ -102,3 +102,16 @@ export const stackrows = [
         }
     ],
 ];
+
+export const contacts={
+        email:['joshuaelias@rvce.edu.in','joshuaelias@gmail.com'],
+        github:{
+            link:'https://www.github.com/joshalva23',
+            display:'github.com/joshalva23',
+        },
+        linkedIn: {
+            link:'https://www.linkedin.com/in/joshua-elias-alva',
+            display:'linkedin.com/in/joshua-elias-alva'
+        },
+        ps:'Unavailable on Sundays',
+};
