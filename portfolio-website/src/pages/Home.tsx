@@ -7,9 +7,9 @@ function Home()
 {
     return (
         <>
-            <div className="flex flex-col w-full" id='top'>
+            <div className="flex flex-col w-full overflow-x-hidden" id='top'>
 
-                <div className="m-0 p-0 bg-transparent text-black relative md:mt-0 h-[25vh] md:h-[65vh]">
+                <div className="bg-transparent text-black relative md:mt-0 h-[25vh] md:h-[65vh]">
                         <div className="w-auto h-auto flex flex-row absolute top-20 md:top-32 left-12 md:left-56">
                             <div className="relative inline-flex items-center justify-center">
                                 <div className="w-12 md:w-32 aspect-[1.2/1] rounded-full bg-[#2A2A2A] absolute z-10"></div>
@@ -33,7 +33,7 @@ function Home()
                         
                 </div>
 
-                <div className="m-0 p-0 bg-[#2D2D2D] text-black w-full relative block h-auto py-16">
+                <div className="bg-[#2D2D2D] text-black w-full relative block h-auto py-16">
                     <div className="flex flex-col md:flex-row items-center justify-center md:items-start md:justify-between md:px-40 space-y-8 md:space-y-0 w-screen md:w-full">
                         <div className="w-[60vw] md:w-[30vw] mt-4 md:mt-12">
                             <p className="uppercase text-left font-robotoMono font-light text-white">
@@ -57,7 +57,7 @@ function Home()
                     </div>
                 </div>
 
-                <div className="m-0 p-0 bg-transparent text-black w-full relative block h-auto pt-8 pb-4">
+                <div className=" bg-transparent text-black text-center w-full relative block h-auto pt-8 pb-4">
 
                     <div className="text-sm md:text-base font-lexend text-white font-light space-y-4">
                         <p>Let's get in Touch! Discuss possibilities.</p>
