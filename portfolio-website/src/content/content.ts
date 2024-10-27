@@ -113,5 +113,5 @@ export const contacts={
             link:'https://www.linkedin.com/in/joshua-elias-alva',
             display:'linkedin.com/in/joshua-elias-alva'
         },
-        ps:'Unavailable on Sundays',
+        ps:'Unavailable on Sunday',
 };
