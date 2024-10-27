@@ -41,13 +41,13 @@ function Home()
                             </p>
                         </div>
                         <div className="md:w-[26vw]">
-                            <img src={img1} alt="Profile" className="h-36 md:h-[40vh] w-auto" />
+                            <img src={img1} alt="Image1" className="h-36 md:h-[40vh] w-auto" />
                         </div>
                     </div>
 
                     <div className="flex flex-col md:flex-row items-center justify-center md:items-start md:justify-between w-full md:px-40 mt-32 space-y-8 md:space-y-0">
                         <div className="-mt-4 md:-mt-12">
-                            <img src={img2} alt="Profile" className="h-36 md:h-[35vh] w-auto" />
+                            <img src={img2} alt="Image2" className="h-36 md:h-[35vh] w-auto" />
                         </div>
                         <div className="w-[60vw] md:w-[30vw]">
                             <p className="uppercase text-left font-robotoMono font-light text-white">
