@@ -1,5 +1,6 @@
 import {projects} from '../content/content.ts';
 import ProjectCard from '../components/ProjectCard.tsx';
+import {Link } from 'react-router-dom';
 function Projects()
 {
     return (
@@ -12,6 +13,13 @@ function Projects()
                         <ProjectCard projectname={project.name} description={project.description} start_date={project.start_date} end_date={project.end_date} company={project.company} image={project.image}  />
                     ))}
                 </div>
+            </div>
+            <div className='flex justify-center items-center pb-16'>
+                <Link to='/contact'>
+                    <p className="font-lexend font-center font-light text-xl text-white">
+                        Get in Touch to know more!
+                    </p>
+                </Link>
             </div>
         </div>
         </>

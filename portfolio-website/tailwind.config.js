@@ -15,6 +15,7 @@ export default {
         robotoMono: ['"Roboto Mono"', 'monospace'],
         dotGothic16 : ['"DotGothic16"', 'sans-serif'],
         dmsans : ['"DM Sans"', 'sans-serif'],
+        dmmono : ['"DM Mono"', 'monospace'],
         
       },
     },

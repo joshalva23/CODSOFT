@@ -11,7 +11,7 @@ interface ProjectCardProps {
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ projectname, description, start_date, end_date, company, image }) => {
   return (
-    <div className="relative w-[100%] bg-[#2D2D2D] min-h-[45vh] p-4 rounded-lg mb-6 group projectcard">
+    <div className="relative w-[100%] bg-[#2D2D2D] min-h-[45vh] p-4 rounded-lg mb-6 group project-card">
         <div className="z-10 relative"> 
             <div className="mx-2 h-[25vh] w-auto bg-[#3D3D3D] rounded-lg mb-4 overflow-hidden p-1">
                 <img src={`/src/assets/project/${image}`} alt="" className="h-full w-full object-contain" />

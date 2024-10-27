@@ -49,3 +49,56 @@ export const projects = [
         image:'sample.png'
     },
 ];
+
+export const stackrows = [
+    [
+        {
+            image:'html5.svg',
+            name:'HTML5'
+        },
+        {
+            image:'css3.svg',
+            name:'CSS3'
+        },
+        {
+            image:'javascript.svg',
+            name:'Javascript'
+        },
+        {
+            image:'react.svg',
+            name:'ReactJS'
+        }
+    ],
+    [
+        {
+            image:'nodejs.svg',
+            name:'NodeJS'
+        },
+        {
+            image:'psql.png',
+            name:'PostgreSQL'
+        },
+        {
+            image:'mongodb.svg',
+            name:'MongoDB'
+        },
+    ],
+    [
+        {
+            image:'c.png',
+            name:'C'
+        },
+        {
+            image:'cpp.png',
+            name:'C++'
+        },
+        {
+            image:'java.svg',
+            name:'Java'
+        },
+        {
+            image:'python.svg',
+            name:'Python'
+        }
+    ],
+];
