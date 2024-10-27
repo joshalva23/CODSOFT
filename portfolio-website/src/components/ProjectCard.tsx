@@ -14,7 +14,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ projectname, description, sta
     <div className="relative w-[100%] bg-[#2D2D2D] min-h-[45vh] p-4 rounded-lg mb-6 group project-card">
         <div className="z-10 relative"> 
             <div className="mx-2 h-[25vh] w-auto bg-[#3D3D3D] rounded-lg mb-4 overflow-hidden p-1">
-                <img src={`/src/assets/project/${image}`} alt="" className="h-full w-full object-contain" />
+                <img src={`/project/${image}`} alt={image} className="h-full w-full object-contain" />
             </div>
             <div className="flex gap-2 flex-wrap px-2">
                 <p className="text-white text-4xl font-dmsans font-light text-left w-full">{projectname}</p>
