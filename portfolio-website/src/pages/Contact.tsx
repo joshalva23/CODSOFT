@@ -35,12 +35,18 @@ const ContactCard: React.FC<ContactCardProps> = ({image, children}) =>
 
 function Contact()
 {
+
+    const openEmail = (email:string) => {
+        const subject = "GET IN TOUCH : From portfolio site";
+        const body = "Hi Joshua,\nI saw your portfolio site. I was interested to know more about ...(continue from here)\n\nRegards,\n(Your Name)";
+        window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    };
     return (
         <>
             <div className="w-full h-full flex flex-col items-center justify-center py-10 divide-y-4 divide-[#303030] ">
                 <ContactCard image='mail.png'>
                             {contacts.email.map((mail,_)=>(
-                                <p>{mail}</p>
+                                <div onClick={()=>openEmail(mail)}><p>{mail}</p></div>
                             ))}
                 </ContactCard>
 
