@@ -7,6 +7,7 @@ import Projects from './pages/Projects.tsx';
 import Contact from './pages/Contact.tsx';
 import NoPage from "./pages/NoPage.tsx";
 import Nav from "./components/Nav.tsx"
+import BlogArticle from "./pages/BlogArticle.tsx";
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
             <Route path="about" element={<AboutMe />} />
             <Route path="contact" element={<Contact />} />
             <Route path="projects" element={<Projects />} />
+            <Route path="/blogs/article/:id" element={<BlogArticle />} />
             <Route path="*" element={<NoPage />} />
           </Route>
         </Routes>

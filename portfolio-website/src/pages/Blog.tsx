@@ -8,8 +8,8 @@ function Blog()
         <>
         <div className='relative py-12'>
             <div className='flex flex-col space-y-8 items-center justify-center'>
-                {blogs.map((blog, _) => (
-                    <BlogCard title={blog.title} description={blog.description} date={blog.date} />
+                {blogs.map((blog, index) => (
+                    <BlogCard id={index} title={blog.title} description={blog.description} date={blog.date} />
                 ))}
             </div>
         </div>

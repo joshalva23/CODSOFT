@@ -22,11 +22,11 @@ function Nav() {
                 </button>
 
                 <nav
-                    className={`w-full bg-gradient-to-r from-[#7c3715] to-[#ac5f36] p-4 md:p-0 absolute md:static z-50 ${
+                    className={`w-full bg-gradient-to-r from-[#7c3715] to-[#ac5f36] p-4 md:p-0 fixed md:static z-50 ${
                         isSidebarOpen ? 'block' : 'hidden'
                     } md:block`}
                 >
-                    <div className="container mx-auto flex flex-col md:flex-row h-screen md:h-20 p-12 md:p-0 items-center md:justify-center space-y-4 md:space-y-0 md:space-x-10">
+                    <div className=" container mx-auto flex flex-col md:flex-row h-screen md:h-20 p-12 md:p-0 items-center md:justify-center space-y-4 md:space-y-0 md:space-x-10">
 
                         <button
                             className="fixed top-2 right-4 md:hidden text-3xl font-bold text-white"
