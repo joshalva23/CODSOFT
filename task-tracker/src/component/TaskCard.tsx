@@ -10,6 +10,9 @@ interface TaskCardProps{
     title:string;
     description:string;
     status: Status;
+    deleteTask: (value:number)=> void;
+    editTask: (value:number) => void;
+    completeTask:(value:number) => void;
 }
 
 
@@ -17,7 +20,7 @@ import Edit from '../assets/edit.png';
 import Delete from '../assets/bin.png';
 import Tick from '../assets/tick.png';
 
-const TaskCard: React.FC<TaskCardProps> = ({id,title,description,status})=>
+const TaskCard: React.FC<TaskCardProps> = ({id,title,description,status, deleteTask, editTask,completeTask})=>
 {
     return (
         <>
@@ -43,23 +46,26 @@ const TaskCard: React.FC<TaskCardProps> = ({id,title,description,status})=>
                         <div className="text-left font-raleway w-[80%]">
                                 {description}
                         </div>
-                        <div className="flex flex-row w-fit justify-end items-end w-[20%] space-x-2">
-                            
-                            <button>
-                                <div className='h-7 w-7'>
-                                    <img src={Tick} alt="" className='object-contain' />
+                        <div className="flex flex-row justify-end items-end w-[20%] space-x-2">
+                        {status !== Status.Completed && (
+                            <>
+                                <button onClick={() => completeTask(id)}>
+                                <div className="h-7 w-7">
+                                    <img src={Tick} alt="Complete Task" className="object-contain" />
                                 </div>
-                            </button>
+                                </button>
 
-                            <button>           
-                                <div className='h-7 w-7'>
-                                    <img src={Edit} alt="" className='object-contain' />
+                                <button onClick={() => editTask(id)}>
+                                <div className="h-7 w-7">
+                                    <img src={Edit} alt="Edit Task" className="object-contain" />
                                 </div>
-                            </button>
+                                </button>
+                            </>
+                        )}
                             
-                            <button>
+                            <button onClick={()=> deleteTask(id)}>
                                 <div className='h-7 w-7'>
-                                    <img src={Delete} alt="" className='object-contain' />
+                                    <img src={Delete} alt={Delete} className='object-contain' />
                                 </div>
                             </button>
                             
