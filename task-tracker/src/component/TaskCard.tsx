@@ -26,7 +26,7 @@ const TaskCard: React.FC<TaskCardProps> = ({id,title,description,status, deleteT
         <>
             <div className="w-full h-auto flex justify-center">
                 <div className="w-3/4 bg-shadowBox rounded-xl min-h-20 px-10 py-4 space-y-1">
-                    <div className="w-full h-autorelative flex flex-row">
+                    <div className="w-full h-auto relative flex flex-row">
                             <div className="w-fit text-left font-openSans font-medium text-xl">
                                 <p className={
                                     status === Status.Completed ? 'line-through' : ''
@@ -42,11 +42,11 @@ const TaskCard: React.FC<TaskCardProps> = ({id,title,description,status, deleteT
                                 ></div>
                             </div>
                     </div>
-                    <div className="flex flex-row">
-                        <div className="text-left font-raleway w-[80%]">
+                    <div className="flex flex-col md:flex-row">
+                        <div className="text-left font-raleway w-full md:w-[80%]">
                                 {description}
                         </div>
-                        <div className="flex flex-row justify-end items-end w-[20%] space-x-2">
+                        <div className="flex flex-row justify-end items-end w-full md:w-[20%] mt-2 md:mt-0 space-x-2">
                         {status !== Status.Completed && (
                             <>
                                 <button onClick={() => completeTask(id)}>

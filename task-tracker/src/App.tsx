@@ -24,6 +24,8 @@ function App() {
 
 
   const handleAddAction = () => {
+    setTaskName('');
+    setTaskDescription('');
     setCreateTask(true);
   };
 
@@ -143,7 +145,7 @@ function App() {
 
 
   return (
-    <div className='bg-bgColor w-full h-full flex flex-col relative'>
+    <div className='bg-bgColor w-full h-max md:h-full flex flex-grow flex-col relative'>
       <div className='w-full'>
         <div className='bg-blueOne w-fit h-16 flex items-center'>
           <div className='text-center px-6'>

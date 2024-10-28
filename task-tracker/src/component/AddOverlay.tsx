@@ -29,7 +29,7 @@ const AddOverlay: React.FC<AddOverlayProps> = ({
 
   return (
     <div className={`fixed inset-0 bg-black bg-opacity-50 z-40 flex items-center justify-center`}>
-      <div className="bg-white p-4 w-[35vw] aspect-[2/1] rounded-lg shadow-lg">
+      <div className="bg-white p-4 w-[90vw] md:w-[35vw] aspect-[2/1] rounded-lg shadow-lg">
         <div className="flex flex-col space-y-4">
           <div className='grid grid-cols-2'>
             <div className='w-full text-xl'>
@@ -71,9 +71,9 @@ const AddOverlay: React.FC<AddOverlayProps> = ({
               />
             </div>
             <div className='w-full mt-3 flex justify-end'>
-              <button onClick={buttonAction} className='w-1/4'>
+              <button onClick={buttonAction} className='w-1/3 md:w-1/4'>
                 <div className={`${buttonColor} w-full h-10 rounded-full flex items-center justify-center`}>
-                  <p className='text-white text-xl font-openSans'>{buttonName}</p>
+                  <p className='text-white text-base md:text-xl font-openSans'>{buttonName}</p>
                 </div>
               </button>
             </div>
