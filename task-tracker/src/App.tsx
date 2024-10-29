@@ -96,10 +96,11 @@ function App() {
       const [completedTask] = prevTasks.splice(index,1);
       completedTask.status = Status.Completed;
       setTasks(prevTasks);
-
+      
+      prevTasks.push(completedTask);
       setTimeout(() => {
-        setTasks([...prevTasks,completedTask]);
-      },300);
+        setTasks(prevTasks);
+      },10);
     } 
   }
 
@@ -191,12 +192,12 @@ function App() {
         <AnimatePresence>
           {tasks.map((task, index) => (
               <motion.div
-                key={task.name + index} 
+                key={`${index}-${task.status}`}
                 layout 
-                initial={{ opacity: 0, translateY: -20 }}
+                initial={{ opacity: 0, translateY: -10 }}
                 animate={{ opacity: 1, translateY: 0 }}
-                exit={{ opacity: 0, translateY: 20 }}
-                transition={{ duration: 1 }}
+                exit={{ opacity: 0, translateY: 10 }}
+                transition={{ duration: 0.5 }}
               >
                 <TaskCard key={index} id={index} title={task.name} description={task.description} status={task.status} deleteTask={handleDeleteTask} editTask={handleEditTask} completeTask={handleCompleteAction} isDark={isDark} />
               </motion.div>

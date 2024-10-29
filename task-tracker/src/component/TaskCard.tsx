@@ -29,9 +29,9 @@ const TaskCard: React.FC<TaskCardProps> = ({id,title,description,status, deleteT
         <>
             <motion.div
             className="w-full h-auto flex justify-center"
-            initial={{ opacity: 0, translateY: -20 }}
+            initial={{ opacity: 0, translateY: -5 }}
             animate={{ opacity: 1, translateY: 0 }}
-            exit={{ opacity: 0, translateY: -20 }}
+            exit={{ opacity: 0, translateY: -5 }}
             layout 
             transition={{ duration: 0.3 }} 
             >
