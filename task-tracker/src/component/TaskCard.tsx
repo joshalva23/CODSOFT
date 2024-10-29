@@ -1,3 +1,5 @@
+import { motion } from 'framer-motion';
+
 export enum Status {
     Created = "created",
     Modified = "modified",
@@ -24,7 +26,14 @@ const TaskCard: React.FC<TaskCardProps> = ({id,title,description,status, deleteT
 {
     return (
         <>
-            <div className="w-full h-auto flex justify-center">
+            <motion.div
+            className="w-full h-auto flex justify-center"
+            initial={{ opacity: 0, translateY: -20 }}
+            animate={{ opacity: 1, translateY: 0 }}
+            exit={{ opacity: 0, translateY: -20 }}
+            layout 
+            transition={{ duration: 0.3 }} 
+            >
                 <div className="w-3/4 bg-shadowBox rounded-xl min-h-20 px-10 py-4 space-y-1">
                     <div className="w-full h-auto relative flex flex-row">
                             <div className="w-fit text-left font-openSans font-medium text-xl">
@@ -72,7 +81,7 @@ const TaskCard: React.FC<TaskCardProps> = ({id,title,description,status, deleteT
                         </div>
                     </div>
                 </div>
-            </div>
+            </motion.div>
         </>
     );
 }

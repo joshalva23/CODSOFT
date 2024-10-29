@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 
 import TaskCard,{Status} from './component/TaskCard.tsx';
@@ -64,7 +65,6 @@ function App() {
     setTaskDescription(tasks[editTaskId].description);
     setTaskName(tasks[editTaskId].name);
     setTaskEdit(true);
-
   }
 
   const handleEditAction = () =>
@@ -87,16 +87,16 @@ function App() {
 
   const handleCompleteAction = (index: number) =>
   {
-    if (index >= 0 && index < tasks.length) {
-      const inTasks = [...tasks];
-      const completeTask = {
-        ...inTasks[index],
-        status:Status.Completed
-      };
-      inTasks.splice(index,1);
-      inTasks.push(completeTask);
-      setTasks(inTasks);
-    }
+    if (index >= 0 && index < tasks.length){
+      const prevTasks = [...tasks];
+      const [completedTask] = prevTasks.splice(index,1);
+      completedTask.status = Status.Completed;
+      setTasks(prevTasks);
+
+      setTimeout(() => {
+        setTasks([...prevTasks,completedTask]);
+      },300);
+    } 
   }
 
 
@@ -162,9 +162,20 @@ function App() {
 
       <div className="relative w-full h-auto py-6">
         <div className='flex flex-col w-full space-y-5'>
+        <AnimatePresence>
           {tasks.map((task, index) => (
-            <TaskCard key={index} id={index} title={task.name} description={task.description} status={task.status} deleteTask={handleDeleteTask} editTask={handleEditTask} completeTask={handleCompleteAction}/>
+              <motion.div
+                key={task.name + index} 
+                layout 
+                initial={{ opacity: 0, translateY: -20 }}
+                animate={{ opacity: 1, translateY: 0 }}
+                exit={{ opacity: 0, translateY: 20 }}
+                transition={{ duration: 1 }}
+              >
+                <TaskCard key={index} id={index} title={task.name} description={task.description} status={task.status} deleteTask={handleDeleteTask} editTask={handleEditTask} completeTask={handleCompleteAction}/>
+              </motion.div>
           ))}
+          </AnimatePresence>
         </div>
       </div>
 
