@@ -116,6 +116,16 @@ function App() {
         name:'Task Name',
         description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus non.Lorem ipsum dolor sit amet, consectetur adipiscing elit..',
         status: Status.Completed
+      },
+      {
+        name:'Task Name',
+        description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus non.Lorem ipsum dolor sit amet, consectetur adipiscing elit..',
+        status: Status.Completed
+      },
+      {
+        name:'Task Name',
+        description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus non.Lorem ipsum dolor sit amet, consectetur adipiscing elit..',
+        status: Status.Completed
       }
     ])
   },
@@ -145,7 +155,7 @@ function App() {
 
 
   return (
-    <div className='bg-bgColor w-full h-max md:h-full flex flex-grow flex-col relative'>
+    <div className='bg-bgColor w-full min-h-full flex flex-grow flex-col relative'>
       <div className='w-full'>
         <div className='bg-blueOne w-fit h-16 flex items-center'>
           <div className='text-center px-6'>
