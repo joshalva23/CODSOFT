@@ -201,6 +201,7 @@ function App() {
                 <TaskCard key={index} id={index} title={task.name} description={task.description} status={task.status} deleteTask={handleDeleteTask} editTask={handleEditTask} completeTask={handleCompleteAction} isDark={isDark} />
               </motion.div>
           ))}
+          </AnimatePresence>
           {
             tasks.length === 0 && 
             (<div className='flex flex-grow flex-col w-full items-center   justify-center font-openSans text-3xl font-semibold py-2'>
@@ -210,7 +211,7 @@ function App() {
               </div>
             </div>)
           }
-          </AnimatePresence>
+          
         </div>
       </div>
 
