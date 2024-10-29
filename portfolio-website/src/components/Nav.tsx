@@ -11,7 +11,7 @@ function Nav() {
 
     return (
         <>
-            <div className="flex flex-col w-screen" id="nav">
+            <div className="flex flex-col w-full" id="nav">
 
                 <button
                     id="openSidebar"
@@ -69,7 +69,7 @@ function Nav() {
 
                 
             </div>
-            <main className="flex-grow w-screen">
+            <main className="flex-grow w-full">
                     <Outlet />
             </main>
         </>
