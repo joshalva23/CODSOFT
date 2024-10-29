@@ -6,6 +6,8 @@ import TaskCard,{Status} from './component/TaskCard.tsx';
 import AddOverlay from './component/AddOverlay.tsx';
 import AddButton from './component/AddButton.tsx';
 
+import Sun from './assets/sun.png';
+
 interface Task {
   name: string;
   description: string;
@@ -22,6 +24,8 @@ function App() {
   const [taskDescription, setTaskDescription] = useState<string>('');
   const [isEditTask, setTaskEdit] = useState<boolean>(false);
   const [editTaskId, setEditTaskId] = useState<number>(0);
+
+  const [isDark , setDark] = useState<boolean>(false);
 
 
   const handleAddAction = () => {
@@ -41,7 +45,7 @@ function App() {
       status: Status.Created,
     };
 
-    setTasks([...tasks, newTask]);
+    setTasks([ newTask,...tasks]);
     localStorage.setItem('tasks', JSON.stringify(tasks));
     setTaskName('');
     setTaskDescription('');
@@ -99,6 +103,10 @@ function App() {
     } 
   }
 
+  const handleDarkness = ()=>
+  {
+    setDark(!isDark);
+  }
 
   useEffect(()=>{
     setTasks([
@@ -155,18 +163,27 @@ function App() {
 
 
   return (
-    <div className='bg-bgColor w-full min-h-full flex flex-grow flex-col relative'>
-      <div className='w-full'>
-        <div className='bg-blueOne w-fit h-16 flex items-center'>
-          <div className='text-center px-6'>
-            <p className='uppercase text-white text-2xl border-b-2 border-inherit pb-0.5 font-inter font-semibold italic'>Plan It!</p>
+    <div className={`${isDark?'bg-bgDarkColor' : 'bg-bgColor'} w-full min-h-full flex flex-grow flex-col relative`}>
+      <div className=' w-full'>
+        <div className='w-full fixed z-50 grid grid-cols-2 h-16'>
+          <div className='bg-blueOne w-fit h-16 flex items-center '>
+            <div className='text-center px-6'>
+              <p className={`uppercase text-2xl border-b-2 pb-0.5 font-inter font-semibold italic text-white `}>Plan It!</p>
+            </div>
           </div>
+        </div>
+        <div className='flex justify-end h-16 items-center pr-12 w-full fixed z-50'>
+          <button onClick={handleDarkness} className='h-full'>
+            <div className={`h-2/3 aspect-[1/1] ${isDark?'bg-shadowDarkBox': 'bg-shadowBox'} rounded-full flex items-center justify-center`}>
+                <img src={Sun} alt="" className={`h-3/4 object-contain ${isDark?'filter brightness-0 invert':''}`} />
+            </div>
+          </button>
         </div>
       </div>
 
-      <div className="relative w-full h-28 py-10 md:py-12">
+      <div className="relative w-full h-28 py-10 md:py-12 mt-20">
         <div className='flex flex-row w-[85vw] justify-end items-center'>
-          <AddButton action={handleAddAction} />
+          <AddButton action={handleAddAction} isDark={isDark}/>
         </div>
       </div>
 
@@ -182,7 +199,7 @@ function App() {
                 exit={{ opacity: 0, translateY: 20 }}
                 transition={{ duration: 1 }}
               >
-                <TaskCard key={index} id={index} title={task.name} description={task.description} status={task.status} deleteTask={handleDeleteTask} editTask={handleEditTask} completeTask={handleCompleteAction}/>
+                <TaskCard key={index} id={index} title={task.name} description={task.description} status={task.status} deleteTask={handleDeleteTask} editTask={handleEditTask} completeTask={handleCompleteAction} isDark={isDark} />
               </motion.div>
           ))}
           </AnimatePresence>
@@ -200,6 +217,7 @@ function App() {
         taskName={taskName}
         taskDescriptionInput={setTaskDescription}
         taskNameInput={setTaskName}
+        isDark={isDark}
       />
 
       <AddOverlay 
@@ -213,6 +231,7 @@ function App() {
         taskName={taskName}
         taskDescriptionInput={setTaskDescription}
         taskNameInput={setTaskName}
+        isDark={isDark}
       />
     </div>
   );
