@@ -130,26 +130,6 @@ function App() {
         description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus non.Lorem ipsum dolor sit amet, consectetur adipiscing elit..',
         status: Status.Completed
       },
-      {
-        name:'Task Name',
-        description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus non.Lorem ipsum dolor sit amet, consectetur adipiscing elit..',
-        status: Status.Completed
-      },
-      {
-        name:'Task Name',
-        description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus non.Lorem ipsum dolor sit amet, consectetur adipiscing elit..',
-        status: Status.Completed
-      },
-      {
-        name:'Task Name',
-        description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus non.Lorem ipsum dolor sit amet, consectetur adipiscing elit..',
-        status: Status.Completed
-      },
-      {
-        name:'Task Name',
-        description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus non.Lorem ipsum dolor sit amet, consectetur adipiscing elit..',
-        status: Status.Completed
-      },
     ])
   },
   []);
@@ -221,6 +201,15 @@ function App() {
                 <TaskCard key={index} id={index} title={task.name} description={task.description} status={task.status} deleteTask={handleDeleteTask} editTask={handleEditTask} completeTask={handleCompleteAction} isDark={isDark} />
               </motion.div>
           ))}
+          {
+            tasks.length === 0 && 
+            (<div className='flex flex-grow flex-col w-full items-center   justify-center font-openSans text-3xl font-semibold py-2'>
+              <p>Nothing Planned Yet</p>
+              <div className='h-32 w-auto'>
+                <img src="/SleepyCat.png" alt="" className='object-contain' />
+              </div>
+            </div>)
+          }
           </AnimatePresence>
         </div>
       </div>
