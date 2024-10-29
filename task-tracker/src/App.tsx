@@ -134,7 +134,22 @@ function App() {
         name:'Task Name',
         description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus non.Lorem ipsum dolor sit amet, consectetur adipiscing elit..',
         status: Status.Completed
-      }
+      },
+      {
+        name:'Task Name',
+        description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus non.Lorem ipsum dolor sit amet, consectetur adipiscing elit..',
+        status: Status.Completed
+      },
+      {
+        name:'Task Name',
+        description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus non.Lorem ipsum dolor sit amet, consectetur adipiscing elit..',
+        status: Status.Completed
+      },
+      {
+        name:'Task Name',
+        description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus non.Lorem ipsum dolor sit amet, consectetur adipiscing elit..',
+        status: Status.Completed
+      },
     ])
   },
   []);
@@ -164,21 +179,25 @@ function App() {
 
   return (
     <div className={`${isDark?'bg-bgDarkColor' : 'bg-bgColor'} w-full min-h-full flex flex-grow flex-col relative`}>
-      <div className=' w-full'>
-        <div className='w-full fixed z-50 grid grid-cols-2 h-16'>
-          <div className='bg-blueOne w-fit h-16 flex items-center '>
-            <div className='text-center px-6'>
-              <p className={`uppercase text-2xl border-b-2 pb-0.5 font-inter font-semibold italic text-white `}>Plan It!</p>
+      <div className='w-full  fixed z-50  h-32 '>
+        <div className={`absolute bottom-0 w-full h-full bg-gradient-to-b ${isDark?'from-bgDarkColor' : 'from-bgColor'} ${isDark?'via-bgDarkColor/90' : 'via-bgColor/90'} to-transparent pointer-events-none`}></div>
+        <div className={`w-full grid grid-cols-2 h-16 relative`}>
+          <div className='w-full'>
+            <div className='bg-blueOne w-fit h-16 flex items-center '>
+              <div className='text-center px-6'>
+                <p className={`uppercase text-2xl border-b-2 pb-0.5 font-inter font-semibold italic text-white `}>Plan It!</p>
+              </div>
             </div>
           </div>
+          <div className='flex justify-end h-16 items-center pr-4 md:pr-12 w-full'>
+            <button onClick={handleDarkness} className='h-full'>
+              <div className={`h-2/3 aspect-[1/1] ${isDark?'bg-shadowDarkBox': 'bg-shadowBox'} rounded-full flex items-center justify-center`}>
+                  <img src={Sun} alt="" className={`h-3/4 object-contain ${isDark?'filter brightness-0 invert':''}`} />
+              </div>
+            </button>
+          </div>
         </div>
-        <div className='flex justify-end h-16 items-center pr-12 w-full fixed z-50'>
-          <button onClick={handleDarkness} className='h-full'>
-            <div className={`h-2/3 aspect-[1/1] ${isDark?'bg-shadowDarkBox': 'bg-shadowBox'} rounded-full flex items-center justify-center`}>
-                <img src={Sun} alt="" className={`h-3/4 object-contain ${isDark?'filter brightness-0 invert':''}`} />
-            </div>
-          </button>
-        </div>
+        
       </div>
 
       <div className="relative w-full h-28 py-10 md:py-12 mt-20">
