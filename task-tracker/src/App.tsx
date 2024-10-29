@@ -179,7 +179,7 @@ function App() {
 
   return (
     <div className={`${isDark?'bg-bgDarkColor' : 'bg-bgColor'} w-full min-h-full flex flex-grow flex-col relative`}>
-      <div className='w-full  fixed z-50  h-32 '>
+      <div className={`w-full  fixed ${isCreateTask||isEditTask ? 'z-0': 'z-50'}  h-32 `}>
         <div className={`absolute bottom-0 w-full h-full bg-gradient-to-b ${isDark?'from-bgDarkColor' : 'from-bgColor'} ${isDark?'via-bgDarkColor/90' : 'via-bgColor/90'} to-transparent pointer-events-none`}></div>
         <div className={`w-full grid grid-cols-2 h-16 relative`}>
           <div className='w-full'>
