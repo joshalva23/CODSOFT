@@ -5,7 +5,16 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors:{
+        defYellow:'#FFD34F',
+      },
+      fontFamily:{
+        instrumentSans:['"Instrument Sans"', 'serif'],
+        notoSans:['"Noto Sans"', 'serif'],
+        inclusiveSans:['"Inclusive Sans"', 'serif'],
+      }
+    },
   },
   plugins: [
     require('tailwindcss'),
