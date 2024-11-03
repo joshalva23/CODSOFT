@@ -36,8 +36,14 @@ function SignUp(){
         setError('');
         if(password !== confirmPassword){
             setError('Passwords do not match');
-            setPassword('');
-            setConfirmPassword('');
+        }
+        else if(password.length < 8)
+        {
+            setError('Password is too short');
+        }
+        else if( !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(password))
+        {
+            setError('Password is too weak');
         }
         else{
             try{
@@ -49,7 +55,8 @@ function SignUp(){
                 setError(error.message);
             }
         }
-            
+        setPassword('');
+        setConfirmPassword('');
         setLoading(false);
     }
     
