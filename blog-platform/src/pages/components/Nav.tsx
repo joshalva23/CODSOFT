@@ -10,7 +10,7 @@ function Nav()
     
     return (
         <>
-        <div className="w-full h-full bg-defYellow">
+        <div className="w-full min-h-screen bg-defYellow">
             <div className="w-full h-auto flex-flex-col py-2">
                 <div className="font-instrumentSans font-semibold text-3xl pl-5"><p>Daily Blogger</p></div>
                 <div className="w-full h-20 py-4 flex items-center justify-center">
