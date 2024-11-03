@@ -1,6 +1,6 @@
 import {ReactNode, createContext, useContext, useState, useEffect } from 'react';
 import { onAuthStateChanged,User } from 'firebase/auth';
-import { auth } from '../firebase/firebase.tsx';
+import { auth } from '../firebase/firebase.ts';
 
 interface AuthContextType{
     currentUser : User | null;
