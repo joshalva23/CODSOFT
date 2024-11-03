@@ -208,7 +208,7 @@ function App() {
             (<div className='flex flex-grow flex-col w-full items-center   justify-center font-openSans text-3xl font-semibold py-2'>
               <p className={`${isDark ? 'text-white': 'text-black'}`}>Nothing Planned Yet</p>
               <div className='h-32 w-auto'>
-                <img src="/SleepyCat.png" alt="" className='object-contain' />
+                <img src="/SleepyCat.png" alt="No Cat Found" className='object-contain' />
               </div>
             </div>)
           }
