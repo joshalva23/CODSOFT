@@ -8,6 +8,8 @@ export default {
     extend: {
       colors:{
         defYellow:'#FFD34F',
+        defYellow2:'#FFD34F',
+        defOrange:'#FF6200',
       },
       fontFamily:{
         instrumentSans:['"Instrument Sans"', 'serif'],

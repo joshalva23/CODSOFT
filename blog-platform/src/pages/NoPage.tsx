@@ -3,7 +3,7 @@ function NoPage()
 
     return (
         <>
-            <div className="text-white"> Invalid Page</div>
+            <div className="text-black"> Invalid Page</div>
         </>
     );
 }
