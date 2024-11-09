@@ -18,7 +18,7 @@ const EditBlog:React.FC<EditBlogProps> = ({blogId,closeModal})=>
     const [previewUrl, setPreviewUrl] = useState<string | null>(null);
     const [originalImageUrl, setOriginalImageUrl] = useState<string | null>(null);
     const [imageModified, setImageModified] = useState<boolean>(false);
-    const [editDocument,setEditDocument] = useState<BlogYesContent|null>(null);
+   
     const [loading,setLoading] = useState<boolean>(false);
 
     const [response, setResponse] = useState<string>('');
@@ -54,16 +54,14 @@ const EditBlog:React.FC<EditBlogProps> = ({blogId,closeModal})=>
 
                 if(blogData.authorId === currentUser?.uid) setEditAuthorized(true);
 
-                setEditDocument(blogData);
+                
 
                 setTitle(blogData.title);
                 setDescription(blogData.description);
                 setContent(blogData.content.join('\n'));
                 setOriginalImageUrl(blogData.imageUrl)
                 setPreviewUrl(blogData.imageUrl);
-            } else {
-                setEditDocument(null);
-            }
+            } 
         }
         catch(error){
             console.error("Error fetching blog:",error);

@@ -70,13 +70,13 @@ const BlogCard: React.FC<BlogCardProps> = ({ title, description, authorName, ima
                         {isModifiable &&
                         (
                             <div className="w-[25%] flex flex-col justify-center items-center space-y-6">
-                                <button onClick={(e)=>handleVisibleBlog()} className="w-10 aspect-[1/1]">
+                                <button onClick={()=>handleVisibleBlog()} className="w-10 aspect-[1/1]">
                                     <img src={visible ? EyeImage:NoEyeImage} alt="h-full w-full object-contain" />
                                 </button>
-                                <button onClick={(e)=> editBlog && editBlog(blogId)} className="w-8 aspect-[1/1]">
+                                <button onClick={()=> editBlog && editBlog(blogId)} className="w-8 aspect-[1/1]">
                                     <img src={editImage} alt="h-full w-full object-contain" />
                                 </button>
-                                <button onClick={(e)=> deleteBlog && deleteBlog(blogId)} className="w-8  aspect-[1/1]">
+                                <button onClick={()=> deleteBlog && deleteBlog(blogId)} className="w-8  aspect-[1/1]">
                                     <img src={BinImage} alt="h-full w-full object-contain" />
                                 </button>
                             </div>
