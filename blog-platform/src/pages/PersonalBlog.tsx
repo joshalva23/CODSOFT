@@ -1,11 +1,12 @@
 import {useState, useEffect} from "react";
-import { BlogNoContent } from "./interface/Blog";
+import { BlogNoContent} from "./interface/Blog";
 import { useAuth } from "../auth/AuthContext";
 import { collection,getDocs, where, query,limit,startAfter,orderBy,doc,deleteDoc } from "firebase/firestore";
 import { db } from "../firebase/firebase";
 
 import BlogCardLoading from "./loading/BlogCardLoading";
 import BlogCard from "./components/BlogCard";
+import EditBlog from "./components/EditBlog";
 
 function PersonalBlog()
 {
@@ -16,9 +17,11 @@ function PersonalBlog()
     const [hasMore, setHasMore] = useState<boolean>(true);
     const [loadingMore, setLoadingMore] = useState<boolean>(false);
 
-    const currentUserId = currentUser?.uid.toString();
-    console.log(currentUserId)
+    const [editModal, setEditModal] = useState<boolean>(false);
+    const [editId, setEditId] = useState<string>('');
+    
 
+    const currentUserId = currentUser?.uid.toString();
     const fetchPersonalBlogs = async ()=>
     {
         if(loadingMore) return;
@@ -53,7 +56,6 @@ function PersonalBlog()
 
             setBlogs([...blogs,...blogsData]);
 
-            console.log(querySnapshot.docs);
 
             if(querySnapshot.docs.length > 0)
             {
@@ -74,8 +76,6 @@ function PersonalBlog()
         fetchPersonalBlogs();
     },[]);
     
-    
-
     const handleDeleteBlog = async (id:string)=>{
         try{
             const blogIndex = blogs.findIndex(blog => blog.id === id);
@@ -97,7 +97,11 @@ function PersonalBlog()
             console.error("Error deleting blog:", error);
         }
     }
-    
+
+    const handleEditBlog = (id:string)=>{
+        setEditId(id);
+        setEditModal(true);
+    }
 
 
     return (
@@ -105,7 +109,7 @@ function PersonalBlog()
         <div className="w-full min-h-full">
             <div className="w-full grid grid-cols-2 my-10">
                 {blogs.map((blog,index)=>(
-                    <BlogCard key={index} title={blog.title} authorName={blog.authorName} description={blog.description} blogId={blog.id} imageURL={blog.imageUrl} isVisible={blog.isVisible} isModifiable={true} deleteBlog={handleDeleteBlog} />
+                    <BlogCard key={index} title={blog.title} authorName={blog.authorName} description={blog.description} blogId={blog.id} imageURL={blog.imageUrl} isVisible={blog.isVisible} isModifiable={true} deleteBlog={handleDeleteBlog} editBlog={handleEditBlog} />
                 )) }
                 {loading && (
                     <>
@@ -132,6 +136,13 @@ function PersonalBlog()
             </div>
 
         </div>
+        {editModal && (
+            <>
+                <div className="fixed inset-0 z-50 bg-black/40 h-full w-full">
+                    <EditBlog blogId={editId} closeModal={setEditModal} />
+                </div>
+            </>
+        )}
         </>
     );
 }

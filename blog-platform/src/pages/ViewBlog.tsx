@@ -45,7 +45,7 @@ function ViewBlog() {
                         <div className='w-3/4 border-t-4 border-black rounded-full'></div>
                     </div>
                     <div className='text-black flex flex-col px-2 mb-10 '>
-                        {document ? (
+                        {(document && document.isVisible) ? (
                             <>
                                 <div className='space-y-1 pl-5 mb-4'>
                                     <div className='font-notoSans text-3xl font-bold'>

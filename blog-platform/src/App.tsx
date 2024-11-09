@@ -30,6 +30,7 @@ function App() {
           >
             <Route index element={<Home />} />
             <Route path="edit" element={<CreateBlog />} />
+            <Route path="edit/:id" element={<CreateBlog />} />
             <Route path="myblogs" element={<PersonalBlog />} />
             <Route path="profile" element={<Profile />} />
             <Route path="blogs/:blogId" element={<ViewBlog />} />

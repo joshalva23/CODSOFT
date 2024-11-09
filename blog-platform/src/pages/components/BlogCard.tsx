@@ -17,19 +17,16 @@ interface BlogCardProps {
     isModifiable:boolean,
     isVisible?:boolean,
     deleteBlog?: (value:string) => void;
+    editBlog?: (value:string) => void;
 }
 
-const BlogCard: React.FC<BlogCardProps> = ({ title, description, authorName, imageURL, blogId, isModifiable, isVisible,deleteBlog }) => {
+const BlogCard: React.FC<BlogCardProps> = ({ title, description, authorName, imageURL, blogId, isModifiable, isVisible,deleteBlog, editBlog }) => {
 
     const navigate = useNavigate();
     const [visible,setVisible] = useState<boolean>(isVisible ?? false);
 
     const handleNavigation = (blogId:string)=>{
         navigate(`/blogs/${blogId}`)
-    }
-
-    const handleEditBlog = ()=>{
-        navigate(`/edit/${blogId}`);
     }
 
     const handleVisibleBlog = async ()=>{
@@ -64,8 +61,8 @@ const BlogCard: React.FC<BlogCardProps> = ({ title, description, authorName, ima
                             <p className="font-extralight font-notoSans text-sm text-justify px-2"> {description} </p>
                         </div>
                     </button>
-                    <div className="w-full flex flex-row overflow-hidden rounded-xl flex justify-center ">
-                        <div className={`${isModifiable?'w-[75%]':'w-[95%]'} h-80 bg-gray-300 overflow-hidden rounded-xl relative`}>
+                    <div className={`w-full ${isModifiable?'aspect-[2/1]':''} flex flex-row overflow-hidden rounded-xl flex justify-center `}>
+                        <div className={`${isModifiable?'w-[75%] h-auto':'w-[95%] h-80'}  bg-gray-300 overflow-hidden rounded-xl relative`}>
                             <img src={imageURL ? imageURL:'/placeholder-img.svg'} alt="BlogImage" className=" w-full h-full object-cover object-[50%_50%]" />
                             <div className="absolute inset-0 bg-black hover:bg-opacity-0 bg-opacity-50 flex items-center justify-center">
                             </div>
@@ -76,10 +73,10 @@ const BlogCard: React.FC<BlogCardProps> = ({ title, description, authorName, ima
                                 <button onClick={(e)=>handleVisibleBlog()} className="w-10 aspect-[1/1]">
                                     <img src={visible ? EyeImage:NoEyeImage} alt="h-full w-full object-contain" />
                                 </button>
-                                <button onClick={(e)=>handleEditBlog()} className="w-10 aspect-[1/1]">
+                                <button onClick={(e)=> editBlog && editBlog(blogId)} className="w-8 aspect-[1/1]">
                                     <img src={editImage} alt="h-full w-full object-contain" />
                                 </button>
-                                <button onClick={(e)=> deleteBlog && deleteBlog(blogId)} className="w-10  aspect-[1/1]">
+                                <button onClick={(e)=> deleteBlog && deleteBlog(blogId)} className="w-8  aspect-[1/1]">
                                     <img src={BinImage} alt="h-full w-full object-contain" />
                                 </button>
                             </div>
