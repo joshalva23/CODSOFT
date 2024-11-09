@@ -76,7 +76,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ title, description, authorName, ima
                                 <button onClick={(e)=>handleVisibleBlog()} className="w-10 aspect-[1/1]">
                                     <img src={visible ? EyeImage:NoEyeImage} alt="h-full w-full object-contain" />
                                 </button>
-                                <button onClick={(e)=>handleEditBlog(blogId)} className="w-10 aspect-[1/1]">
+                                <button onClick={(e)=>handleEditBlog()} className="w-10 aspect-[1/1]">
                                     <img src={editImage} alt="h-full w-full object-contain" />
                                 </button>
                                 <button onClick={(e)=> deleteBlog && deleteBlog(blogId)} className="w-10  aspect-[1/1]">
