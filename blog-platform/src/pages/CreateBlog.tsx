@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState ,useRef} from "react";
 import { db } from "../firebase/firebase";
 import { v4 as uuidv4 } from 'uuid';
 import { doc,setDoc,serverTimestamp } from "firebase/firestore";
@@ -8,7 +8,7 @@ function CreateBlog()
 {
     const [title,setTitle] = useState<string>('');
     const [description,setDescription] = useState<string>('');
-    const [content,setContent] = useState<string>('');
+    const contentRef = useRef<HTMLTextAreaElement>(null);
 
     const [selectedImage, setSelectedImage] = useState<File | null>(null);
     const [previewUrl, setPreviewUrl] = useState<string | null>(null);
@@ -25,6 +25,8 @@ function CreateBlog()
         setPreviewUrl(previewUrl);
         }
     };
+
+    
 
     const handleUnselect =()=>{
         setSelectedImage(null);
@@ -50,23 +52,27 @@ function CreateBlog()
                 const data = await response.json();
                 imageUrl = data.secure_url;
             }
-    
+            
+            const content = contentRef.current?.value || '';
+            const contentArray = content.split('\n').filter((para) => para.trim() !== '');
+
             const newBlogPost = {
                 title,
-                content,
+                content: contentArray,
                 imageUrl,
                 description,
                 authorName: currentUser?.displayName,
                 authorId: currentUser?.uid,
                 createdAt: serverTimestamp(),
                 lastEditAt: null,
+                isVisible:true
             };
             
             const blogPostRef = doc(db, 'blogs', uuidv4());
             await setDoc(blogPostRef, newBlogPost);
     
+            if(contentRef.current) contentRef.current.value = '';
             setTitle('');
-            setContent('');
             setDescription('');
             setSelectedImage(null);
             setPreviewUrl(null);
@@ -139,9 +145,8 @@ function CreateBlog()
                                 id="content" 
                                 cols={30} 
                                 rows={10}
-                                value={content}
+                                ref={contentRef}
                                 className="bg-[#F1F1F1] w-full rounded-xl px-3 py-2 text-black outline-none focus:ring-2 focus:ring-defYellow focus:ring-offset-2 font-instrumentSans"
-                                onChange={(e)=>setContent(e.target.value)}
                                 required
                             />
                         </div>

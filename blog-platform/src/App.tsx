@@ -12,6 +12,7 @@ import PersonalBlog from "./pages/PersonalBlog";
 
 import { AuthProvider } from './auth/AuthContext';
 import PrivateRoute from "./components/PrivateRoute";
+import ViewBlog from "./pages/ViewBlog";
 
 function App() {
   return (
@@ -31,8 +32,11 @@ function App() {
             <Route path="edit" element={<CreateBlog />} />
             <Route path="myblogs" element={<PersonalBlog />} />
             <Route path="profile" element={<Profile />} />
+            <Route path="blogs/:blogId" element={<ViewBlog />} />
+            
           </Route>
-
+          
+          
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path='/logout' element={<Logout />} />

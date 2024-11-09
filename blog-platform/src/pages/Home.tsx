@@ -1,15 +1,15 @@
 import { useState,useEffect } from "react";
-import { useAuth } from "../auth/AuthContext.tsx";
-import { db } from "../firebase/firebase.ts";
-import BlogCard from "./components/BlogCard.tsx";
-import { Blog } from "./interface/Blog.tsx";
-import { collection, getDocs,query, limit, startAfter,orderBy } from "firebase/firestore";
-import BlogCardLoading from "./loading/BlogCardLoading.tsx";
+import { useAuth } from "../auth/AuthContext";
+import { db } from "../firebase/firebase";
+import BlogCard from "./components/BlogCard";
+import { BlogNoContent } from "./interface/Blog";
+import { collection, getDocs,query, limit, startAfter,orderBy,where } from "firebase/firestore";
+import BlogCardLoading from "./loading/BlogCardLoading";
 
 function Home()
 {
     const {currentUser} = useAuth();
-    const [blogs, setBlogs] = useState<Blog[]>([]);
+    const [blogs, setBlogs] = useState<BlogNoContent[]>([]);
     const [loading, setLoading] = useState(true);
     const [lastVisible, setLastVisible] = useState<any>(null);
     const [hasMore, setHasMore] = useState<boolean>(true);
@@ -20,32 +20,40 @@ function Home()
         setLoadingMore(true);
         setLoading(true);
         try {
-
+            let numberOfBlogs = 2;
             const blogsRef = collection(db,"blogs");
             let q;
 
             if(lastVisible){
-                q = query(blogsRef, orderBy("createdAt","desc"), startAfter(lastVisible),limit(2));
+                q = query(blogsRef,
+                     where("isVisible","==",true),
+                     orderBy("createdAt","desc"), 
+                     startAfter(lastVisible),
+                     limit(numberOfBlogs));
             }
             else{
-                q = query(blogsRef, orderBy("createdAt","desc"),limit(2));
+                q = query(blogsRef,
+                     where("isVisible","==",true),
+                     orderBy("createdAt","desc"),
+                     limit(numberOfBlogs));
             }
 
             const querySnapshot = await getDocs(q);
-            const blogsData: Blog[] = querySnapshot.docs.map((doc)=> ({
+            const blogsData: BlogNoContent[] = querySnapshot.docs.map((doc)=> ({
                 id:doc.id,
                 ...doc.data(),
-            })) as Blog[];
+            })) as BlogNoContent[];
             
             setBlogs([...blogs, ...blogsData]);
 
             if (querySnapshot.docs.length > 0) {
                 setLastVisible(querySnapshot.docs[querySnapshot.docs.length - 1]);
             }
-            setHasMore(!querySnapshot.empty && querySnapshot.docs.length === 2);
+            setHasMore(!querySnapshot.empty && querySnapshot.docs.length === numberOfBlogs);
 
         } catch (error) {
             console.error("Error fetching blogs:", error);
+            setHasMore(false);
         } finally {
             setLoading(false);
             setLoadingMore(false);
@@ -53,7 +61,6 @@ function Home()
     };
 
     useEffect(()=>{
-
         fetchBlogs();
     },[]);
 
@@ -65,7 +72,7 @@ function Home()
             </div>
             <div className="w-full grid grid-cols-2 my-10">
                 {blogs.map((blog,index)=>(
-                    <BlogCard key={index} title={blog.title} authorName={blog.authorName} description={blog.description} blogId={blog.id} imageURL={blog.imageUrl} />
+                    <BlogCard key={index} title={blog.title} authorName={blog.authorName} description={blog.description} blogId={blog.id} imageURL={blog.imageUrl} isModifiable={false}/>
                 )) }
                 {loading && (
                     <>
