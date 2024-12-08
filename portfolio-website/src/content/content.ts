@@ -83,7 +83,7 @@ export const stackrows = [
         },
         {
             image:'react.svg',
-            name:'ReactJS'
+            name:'React JS-Native'
         }
     ],
     [
