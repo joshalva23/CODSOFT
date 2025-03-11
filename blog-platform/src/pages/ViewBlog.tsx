@@ -4,11 +4,14 @@ import { BlogYesContent } from './interface/Blog';
 import { doc, getDoc } from "firebase/firestore";
 import { db } from '../firebase/firebase';
 import SplashScreen from './components/SplashScreen';
+import { useAuth } from '../auth/AuthContext';
 
 function ViewBlog() {
     const { blogId } = useParams<{ blogId: string }>();
     const [document, setDocument] = useState<BlogYesContent | null>(null);
     const [loading, setLoading] = useState(true);
+
+    const {currentUser} = useAuth();
 
     const fetchDocument = async (id: string | undefined) => {
         if (!id) {
@@ -45,7 +48,7 @@ function ViewBlog() {
                         <div className='w-3/4 border-t-4 border-black rounded-full'></div>
                     </div>
                     <div className='text-black flex flex-col px-2 mb-10 '>
-                        {(document && document.isVisible) ? (
+                        {(document && ( document.authorId === currentUser?.uid?.toString() || document.isVisible)) ? (
                             <>
                                 <div className='space-y-1 pl-5 mb-4'>
                                     <div className='font-notoSans text-3xl font-bold'>
