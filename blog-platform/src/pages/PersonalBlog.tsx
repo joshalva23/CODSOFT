@@ -153,7 +153,9 @@ function PersonalBlog()
                 )} */}
                 {!loading && hasMore && (
                     <div ref={loadMoreRef} className="w-full flex items-center justify-center col-span-2">
-                        <p className="text-black font-notoSans font-bold">Loading more...</p>
+                        <div className="bg-white w-32 aspect-[3/1] rounded-full">
+                            <p className="text-black font-notoSans font-bold">Loading more...</p>
+                        </div>
                     </div>
                 )}
                 {!blogs.length && !loading && (
