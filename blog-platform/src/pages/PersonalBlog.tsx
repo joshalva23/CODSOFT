@@ -1,4 +1,4 @@
-import {useState, useEffect} from "react";
+import {useState, useEffect, useRef} from "react";
 import { BlogNoContent} from "./interface/Blog";
 import { useAuth } from "../auth/AuthContext";
 import { collection,getDocs, where, query,limit,startAfter,orderBy,doc,deleteDoc } from "firebase/firestore";
@@ -19,6 +19,8 @@ function PersonalBlog()
 
     const [editModal, setEditModal] = useState<boolean>(false);
     const [editId, setEditId] = useState<string>('');
+
+    const loadMoreRef = useRef(null);
     
 
     const currentUserId = currentUser?.uid.toString();
@@ -75,6 +77,29 @@ function PersonalBlog()
     useEffect(()=>{
         fetchPersonalBlogs();
     },[]);
+
+    useEffect(() => {
+        if (!hasMore) return;
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                if (entries[0].isIntersecting && !loadingMore) {
+                    fetchPersonalBlogs();
+                }
+            },
+            { root: null, rootMargin: "100px", threshold: 1.0 }
+        );
+
+        if (loadMoreRef.current) {
+            observer.observe(loadMoreRef.current);
+        }
+
+        return () => {
+            if (loadMoreRef.current) {
+                observer.unobserve(loadMoreRef.current);
+            }
+        };
+    }, [hasMore, loadingMore]);
     
     const handleDeleteBlog = async (id:string)=>{
         try{
@@ -117,7 +142,7 @@ function PersonalBlog()
                         <BlogCardLoading />
                    </>
                 )}
-                {!loading && hasMore && (
+                {/* {!loading && hasMore && (
                     <>
                         <div className="w-full flex items-center justify-center col-span-2">
                             <button onClick={fetchPersonalBlogs} className="bg-white w-32 aspect-[3/1] rounded-full">
@@ -125,6 +150,11 @@ function PersonalBlog()
                             </button>
                         </div>
                     </>
+                )} */}
+                {!loading && hasMore && (
+                    <div ref={loadMoreRef} className="w-full flex items-center justify-center col-span-2">
+                        <p className="text-black font-notoSans font-bold">Loading more...</p>
+                    </div>
                 )}
                 {!blogs.length && !loading && (
                     <>
