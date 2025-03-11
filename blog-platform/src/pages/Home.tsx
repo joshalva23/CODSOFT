@@ -1,4 +1,4 @@
-import { useState,useEffect } from "react";
+import { useState,useEffect, useRef } from "react";
 import { useAuth } from "../auth/AuthContext";
 import { db } from "../firebase/firebase";
 import BlogCard from "./components/BlogCard";
@@ -14,6 +14,10 @@ function Home()
     const [lastVisible, setLastVisible] = useState<any>(null);
     const [hasMore, setHasMore] = useState<boolean>(true);
     const [loadingMore, setLoadingMore] = useState<boolean>(false);
+
+    const loadMoreRef = useRef(null);
+
+    
     
     const fetchBlogs = async () => {
         if (loadingMore) return; 
@@ -64,6 +68,31 @@ function Home()
         fetchBlogs();
     },[]);
 
+   
+
+    useEffect(() => {
+        if (!hasMore) return;
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                if (entries[0].isIntersecting && !loadingMore) {
+                    fetchBlogs();
+                }
+            },
+            { root: null, rootMargin: "100px", threshold: 1.0 }
+        );
+
+        if (loadMoreRef.current) {
+            observer.observe(loadMoreRef.current);
+        }
+
+        return () => {
+            if (loadMoreRef.current) {
+                observer.unobserve(loadMoreRef.current);
+            }
+        };
+    }, [hasMore, loadingMore]);
+
     return (
         <>
         <div className="w-full min-h-full">
@@ -80,7 +109,7 @@ function Home()
                         <BlogCardLoading />
                    </>
                 )}
-                {!loading && hasMore && (
+                {/* {!loading && hasMore && (
                     <>
                         <div className="w-full flex items-center justify-center col-span-2">
                             <button onClick={fetchBlogs} className="bg-white w-32 aspect-[3/1] rounded-full">
@@ -88,6 +117,11 @@ function Home()
                             </button>
                         </div>
                     </>
+                )} */}
+                {!loading && hasMore && (
+                    <div ref={loadMoreRef} className="w-full flex items-center justify-center col-span-2">
+                        <p className="text-black font-notoSans font-bold">Loading more...</p>
+                    </div>
                 )}
                 {!blogs.length && !loading && (
                     <>
