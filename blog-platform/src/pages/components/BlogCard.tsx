@@ -63,7 +63,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ title, description, authorName, ima
                     </button>
                     <div className={`w-full ${isModifiable?'aspect-[2/1]':''} flex flex-row overflow-hidden rounded-xl flex justify-center `}>
                         <div className={`${isModifiable?'w-[75%] h-auto':'w-[95%] h-80'}  bg-gray-300 overflow-hidden rounded-xl relative`}>
-                            <img src={imageURL ? imageURL:'/placeholder-img.svg'} alt="BlogImage" className=" w-full h-full object-cover object-[50%_50%]" />
+                            <img src={imageURL ? imageURL:'/placeholder-img.svg'} alt="BlogImage" className=" w-full h-full object-cover object-[50%_50%]" loading="lazy" />
                             <div className="absolute inset-0 bg-black hover:bg-opacity-0 bg-opacity-50 flex items-center justify-center">
                             </div>
                         </div>
